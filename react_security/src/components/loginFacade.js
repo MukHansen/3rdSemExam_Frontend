@@ -94,32 +94,7 @@ class LoginFacade {
     const options = this.makeOptions("POST", true, name); //True add's the token
     return fetch(URL + "/api/exam/createdriver", options).then(handleHttpErrors);
   };
-
-
-  fetchPersonsByHobby = (hobby) => {
-    console.log("fetchingPersonsByHobby");
-    const options = this.makeOptions("GET", true); //True add's the token
-    return fetch(URL + "/api/person/hobby/" + hobby, options).then(handleHttpErrors);
-  };
-
-  fetchPersonById = (id) => {
-    console.log("fetchingPersonById");
-    const options = this.makeOptions("GET", true); //True add's the token
-    return fetch(URL + "/api/person/id/" + id, options).then(handleHttpErrors);
-  };
-
-  fetchPersonByEmail = (email) => {
-    console.log("fetchingPersonByEmail");
-    const options = this.makeOptions("GET", true); //True add's the token
-    return fetch(URL + "/api/person/email/" + email, options).then(handleHttpErrors);
-  };
-
-  fetchPersonByPhone = (phone) => {
-    console.log("fetchingPersonByPhone");
-    const options = this.makeOptions("GET", true); //True add's the token
-    return fetch(URL + "/api/person/phone/" + phone, options).then(handleHttpErrors);
-  };
-
+  
   fetchData = () => {
     console.log("fetchData");
     const options = this.makeOptions("GET", true); //True add's the token

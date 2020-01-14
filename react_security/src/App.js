@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import facade from "./components/loginFacade";
 import LogIn from "./components/LogIn";
-import Search from "./components/Search";
 import Home from "./components/Home";
 import Drivers from "./components/Drivers";
 import Trucks from "./components/Trucks";
@@ -55,7 +54,6 @@ function App() {
           <Header loggedIn={loggedIn} />
           <Switch>
             <Route exact path="/"><Home /></Route>
-            {/* <Route path="/search"><Search loggedIn={loggedIn} allDrivers={allDrivers} /></Route> */}
             <Route path="/drivers"><Drivers loggedIn={loggedIn} allDrivers={allDrivers} setAllDrivers={setAllDrivers}/></Route>
             <Route path="/trucks"><Trucks loggedIn={loggedIn} allTrucks={allTrucks} setAllTrucks={setAllTrucks}/></Route>
             <Route path="/log"><LogIn
@@ -78,7 +76,6 @@ function Header({ loggedIn }) {
     <div>
       <ul className="header">
         <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
-        <li><NavLink activeClassName="active" to="/search">{loggedIn ? <div>Search</div> : <div id="navbar"></div>}</NavLink></li>
         <li><NavLink activeClassName="active" to="/drivers">{loggedIn ? <div>Drivers</div> : <div id="navbar"></div>}</NavLink></li>
         <li><NavLink activeClassName="active" to="/trucks">{loggedIn ? <div>Trucks</div> : <div id="navbar"></div>}</NavLink></li>
         <li><NavLink activeClassName="active" to="/log">{loggedIn ? <div>Logout</div> : <div>Login</div>}</NavLink></li>

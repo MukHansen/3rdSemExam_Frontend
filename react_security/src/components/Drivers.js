@@ -68,37 +68,7 @@ function Drivers({ loggedIn, allDrivers, setAllDrivers }) {
             getData();
         }
       };
-
-    if(facade.getRole() === "admin"){
-        return (
-        <div>
-        <h3>Drivers</h3>
-        <table>
-            <thead><tr><td><b>Name</b></td></tr></thead>
-             <tbody>
-                {allDrivers.map((driver) => (
-                    <tr key={uuid()}>
-                        <td>{driver.name}</td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-        {/* <hr />
-        <select id="hobbyToDelete">
-            <option> - select a Hobby to delete - </option>
-            {allDrivers.map((hobby) => {
-              return <option key={uuid()}>{hobby.name}</option>;
-            })};
-        </select>
-        <button onClick={deleteDriverByName} >Delete Hobby</button>
-        <hr />
-        <input placeholder="HobbyName" type="text" id="hobbyToEditName" />
-        <input placeholder="HobbyDescription" type="text" id="hobbyToEditDescription" />
-        <button onClick={addEditDriver} >Add/Edit Hobby</button>
-        <hr /> */}
-        </div>
-        )     
-    } else if(facade.getRole() === "user"){
+        if(facade.getRole() === "admin"){
         return (
         <div>
         <h3>Drivers</h3>
@@ -138,6 +108,27 @@ function Drivers({ loggedIn, allDrivers, setAllDrivers }) {
             <input placeholder="First name" type="text" id="driverToCreateFirstName"/>
             <input placeholder="Last name" type="text" id="driverToCreateLastName"/>
             <button onClick={createDriver} >Create Driver</button>
+        <hr />
+        </div>
+        )     
+    } else if(facade.getRole() === "user"){
+        return (
+        <div>
+        <h3>Drivers</h3>
+        <hr />
+        <table>
+            <thead><tr><td><b>Driver Id</b></td><td><b>First name</b></td><td><b>Last name</b></td><td><b>Truck name</b></td></tr></thead>
+             <tbody>
+                {allDrivers.map((driver) => (
+                    <tr key={uuid()}>
+                        <td>{driver.id}</td>
+                        <td>{driver.firstName}</td>
+                        <td>{driver.lastName}</td>
+                        <td>{driver.trucks[0].name}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
         <hr />
         </div>
         )     
