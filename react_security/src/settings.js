@@ -1,5 +1,5 @@
-const URL = "https://mukh.dk/EksamPrepType1";
+// const URL = "https://mukh.dk/3rdSemExam";
 
-// const URL = "http://localhost:8080/EksamPrepType1";
+const URL = "http://localhost:8080/3rdSemExam";
 
 export default URL;

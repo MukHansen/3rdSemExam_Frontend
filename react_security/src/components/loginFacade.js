@@ -65,23 +65,36 @@ class LoginFacade {
     return opts;
   }
 
-  fetchAllHobbies = () => {
-    console.log("fetchingAllHobbies");
+  fetchAllDrivers = () => {
+    console.log("fetchingAllDrivers");
     const options = this.makeOptions("GET", true); //True add's the token
-    return fetch(URL + "/api/person/allhobbies", options).then(handleHttpErrors);
+    return fetch(URL + "/api/exam/alldrivers", options).then(handleHttpErrors);
   };
 
-  deleteHobby = (hobby) => {
-    console.log("Deleting hobby", hobby);
+  fetchAllTrucks = () => {
+    console.log("fetchingAllTrucks");
+    const options = this.makeOptions("GET", true); //True add's the token
+    return fetch(URL + "/api/exam/alltrucks", options).then(handleHttpErrors);
+  };
+
+  deleteDriver = (id) => {
+    console.log("Deleting driver", id);
     const options = this.makeOptions("DELETE", true); //True add's the token
-    return fetch(URL + "/api/person/deletehobby/" + hobby, options).then(handleHttpErrors);
+    return fetch(URL + "/api/exam/deletedriver/" + id, options);
   };
 
-  addEditHobby = (hobby) => {
-    console.log("Editing hobby", hobby);
-    const options = this.makeOptions("PUT", true, hobby); //True add's the token
-    return fetch(URL + "/api/person/edithobby", options).then(handleHttpErrors);
+  editDriver = (id, name) => {
+    console.log("Editing driver", name);
+    const options = this.makeOptions("PUT", true, name); //True add's the token
+    return fetch(URL + "/api/exam/editdriver/" + id, options).then(handleHttpErrors);
   };
+
+  createDriver = (name) => {
+    console.log("Creating driver", name);
+    const options = this.makeOptions("POST", true, name); //True add's the token
+    return fetch(URL + "/api/exam/createdriver", options).then(handleHttpErrors);
+  };
+
 
   fetchPersonsByHobby = (hobby) => {
     console.log("fetchingPersonsByHobby");

@@ -5,7 +5,7 @@ function Home() {
     return (
         <div>
             <hr/>
-                <h2>Welcome to Test-Exam-Exercise 1</h2>
+                <h2>Welcome to 3rdSemExam</h2>
             <hr/>
         </div>
     )

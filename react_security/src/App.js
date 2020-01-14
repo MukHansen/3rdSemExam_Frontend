@@ -9,22 +9,26 @@ import facade from "./components/loginFacade";
 import LogIn from "./components/LogIn";
 import Search from "./components/Search";
 import Home from "./components/Home";
-import Hobbies from "./components/Hobbies";
+import Drivers from "./components/Drivers";
+import Trucks from "./components/Trucks";
 
 function App() {
   console.log("App");
   const token = localStorage.getItem("jwtToken");
   const [loggedIn, setLoggedIn] = useState(token ? true : false);
-  const [allHobbies, setAllHobbies] = useState([]);
-  const [person, setPerson] = useState([]);
+  const [allDrivers, setAllDrivers] = useState([]);
+  const [allTrucks, setAllTrucks] = useState([]);
 
   useEffect(() => {
     if (loggedIn) {
         const getData = async () => {
             try {
-                const hobbyData = await facade.fetchAllHobbies();
-                console.log("hobbyData", hobbyData);
-                setAllHobbies(hobbyData);
+                const driverData = await facade.fetchAllDrivers();
+                console.log("driverData", driverData);
+                setAllDrivers(driverData);
+                const truckData = await facade.fetchAllTrucks();
+                console.log("truckData", truckData);
+                setAllTrucks(truckData);
             } catch (e) {
                 console.log("err", e);
             }
@@ -51,8 +55,9 @@ function App() {
           <Header loggedIn={loggedIn} />
           <Switch>
             <Route exact path="/"><Home /></Route>
-            <Route path="/search"><Search loggedIn={loggedIn} allHobbies={allHobbies} person={person} setPerson={setPerson}/></Route>
-            <Route path="/hobbies"><Hobbies loggedIn={loggedIn} allHobbies={allHobbies} setAllHobbies={setAllHobbies}/></Route>
+            {/* <Route path="/search"><Search loggedIn={loggedIn} allDrivers={allDrivers} /></Route> */}
+            <Route path="/drivers"><Drivers loggedIn={loggedIn} allDrivers={allDrivers} setAllDrivers={setAllDrivers}/></Route>
+            <Route path="/trucks"><Trucks loggedIn={loggedIn} allTrucks={allTrucks} setAllTrucks={setAllTrucks}/></Route>
             <Route path="/log"><LogIn
               facade={facade}
               loggedIn={loggedIn}
@@ -74,7 +79,8 @@ function Header({ loggedIn }) {
       <ul className="header">
         <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
         <li><NavLink activeClassName="active" to="/search">{loggedIn ? <div>Search</div> : <div id="navbar"></div>}</NavLink></li>
-        <li><NavLink activeClassName="active" to="/hobbies">{loggedIn ? <div>Hobbies</div> : <div id="navbar"></div>}</NavLink></li>
+        <li><NavLink activeClassName="active" to="/drivers">{loggedIn ? <div>Drivers</div> : <div id="navbar"></div>}</NavLink></li>
+        <li><NavLink activeClassName="active" to="/trucks">{loggedIn ? <div>Trucks</div> : <div id="navbar"></div>}</NavLink></li>
         <li><NavLink activeClassName="active" to="/log">{loggedIn ? <div>Logout</div> : <div>Login</div>}</NavLink></li>
       </ul>
     </div>
@@ -84,9 +90,7 @@ function Header({ loggedIn }) {
 function NoMatch() {
   console.log("NoMatch");
   return (
-    <div>
-      hello NoMatch
-    </div>
+  <Home />
   )
 }
 
